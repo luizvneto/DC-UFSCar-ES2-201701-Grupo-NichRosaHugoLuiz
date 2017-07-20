@@ -5,19 +5,7 @@ import java.text.FieldPosition;
 import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
@@ -447,6 +435,43 @@ public class BibEntry implements Cloneable {
         Objects.requireNonNull(value, "field value must not be null");
 
         String fieldName = toLowerCase(name);
+
+        // Para que o ano siga o padrão do calendário da linguagem JAVA, é necessário que este seja composto de 4 dígitos, no padrão YYYY
+        // É necessário, também, que o mesmo ano siga o calendário gregoriano. Ou seja, o ano deve ser maior do que 1582 e menor que o ano vigente, 2017
+
+        if (fieldName.equals("year")){
+            int newYear = Integer.parseInt(value);
+            if(newYear < 1582 || newYear > 2017) {
+                return setField("year", "");
+            }
+        }
+
+        // Checagem para ver se o campo é bibtexkey e se a chave tem, pelo menos tamanho 2 e começa com uma letra
+        // Caso um dos dois últimos casos sejam falsos, atribui uma chave automaticamente
+        
+        if (fieldName.equals("bibtexkey")) {
+            char bibtexTheKey [] = value.toCharArray();
+            if(value.length() <2 || Character.isDigit(bibtexTheKey[0])){
+                String characterMap1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                String characterMap2 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                StringBuilder randomKey = new StringBuilder();
+
+                Random rand = new Random();
+
+                while(randomKey.length() < 10){
+                    int indice = (int) (rand.nextFloat()*randomKey.length()*42)%52;
+                    if (randomKey.length() == 0){
+                        randomKey.append(characterMap1.charAt(indice));
+                    }
+                    else{
+                        randomKey.append(characterMap2.charAt(indice));
+                    }
+                }
+
+                String finishedRandomKey = randomKey.toString();
+                return setField("bibtexkey", finishedRandomKey);
+            }
+        }
 
         if (value.isEmpty()) {
             return clearField(fieldName);
