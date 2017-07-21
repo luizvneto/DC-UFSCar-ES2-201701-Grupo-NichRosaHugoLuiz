@@ -473,6 +473,31 @@ public class BibEntry implements Cloneable {
             }
         }
 
+        if ("author".equals(fieldName)){
+            char valueChars [] = value.toCharArray();
+            try{
+                for (int i = 0; i < value.length(); i++){
+                    if(!Character.isLetter(valueChars[i])) {
+                        throw new ParseException("", 0);
+                    }
+                }
+            }
+            catch (ParseException n){
+                throw new IllegalArgumentException("Invalid Author Name");
+            }
+        }
+
+        if ("journal".equals(fieldName)){
+            try{
+                if (value.matches("^[0-9]+")){
+                    throw new ParseException("", 0);
+                }
+            }
+            catch (ParseException n){
+                throw new IllegalArgumentException("Invalid Journal Name");
+            }
+        }
+
         if (value.isEmpty()) {
             return clearField(fieldName);
         }
