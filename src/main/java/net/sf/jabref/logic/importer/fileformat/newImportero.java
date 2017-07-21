@@ -11,7 +11,7 @@ import net.sf.jabref.logic.util.FileExtensions;
 import net.sf.jabref.model.entry.BibEntry;
 import net.sf.jabref.model.entry.BibtexEntryTypes;
 
-public class newImporter extends Importer {
+public class newImportero extends Importer {
 
     @Override
     public String getName() {
