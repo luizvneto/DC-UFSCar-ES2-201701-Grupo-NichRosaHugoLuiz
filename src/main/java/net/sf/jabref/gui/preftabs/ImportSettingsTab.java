@@ -136,6 +136,7 @@ public class ImportSettingsTab extends JPanel implements PrefsTab {
         }
         fileNamePattern.setText(prefs.get(JabRefPreferences.IMPORT_FILENAMEPATTERN));
 
+        String pattern = "";
         fileDirPattern.setText(prefs.get(JabRefPreferences.IMPORT_FILEDIRPATTERN));
     }
 
