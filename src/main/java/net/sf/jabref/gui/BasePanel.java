@@ -412,18 +412,20 @@ public class BasePanel extends JPanel implements ClipboardOwner, FileUpdateListe
                     entries.removeIf(BibEntry::hasCiteKey);
 
                 // if we're going to override some cite keys warn the user about it
-                } else if (Globals.prefs.getBoolean(JabRefPreferences.WARN_BEFORE_OVERWRITING_KEY) && entries.parallelStream().anyMatch(BibEntry::hasCiteKey)) {
-                    CheckBoxMessage cbm = new CheckBoxMessage(
-                            Localization.lang("One or more keys will be overwritten. Continue?"),
-                            Localization.lang("Disable this confirmation dialog"), false);
-                    final int answer = JOptionPane.showConfirmDialog(frame, cbm,
-                            Localization.lang("Overwrite keys"), JOptionPane.YES_NO_OPTION);
-                    Globals.prefs.putBoolean(JabRefPreferences.WARN_BEFORE_OVERWRITING_KEY, !cbm.isSelected());
+                } else if (Globals.prefs.getBoolean(JabRefPreferences.WARN_BEFORE_OVERWRITING_KEY)) {
+                    if (entries.parallelStream().anyMatch(BibEntry::hasCiteKey)) {
+                        CheckBoxMessage cbm = new CheckBoxMessage(
+                                Localization.lang("One or more keys will be overwritten. Continue?"),
+                                Localization.lang("Disable this confirmation dialog"), false);
+                        final int answer = JOptionPane.showConfirmDialog(frame, cbm,
+                                Localization.lang("Overwrite keys"), JOptionPane.YES_NO_OPTION);
+                        Globals.prefs.putBoolean(JabRefPreferences.WARN_BEFORE_OVERWRITING_KEY, !cbm.isSelected());
 
-                    // The user doesn't want to overide cite keys
-                    if (answer == JOptionPane.NO_OPTION) {
-                        canceled = true;
-                        return;
+                        // The user doesn't want to overide cite keys
+                        if (answer == JOptionPane.NO_OPTION) {
+                            canceled = true;
+                            return;
+                        }
                     }
                 }
 

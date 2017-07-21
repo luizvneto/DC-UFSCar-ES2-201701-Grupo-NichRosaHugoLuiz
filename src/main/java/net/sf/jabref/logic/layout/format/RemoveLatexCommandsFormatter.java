@@ -23,7 +23,6 @@ public class RemoveLatexCommandsFormatter implements LayoutFormatter {
                 incommand = true;
                 currentCommand = new StringBuilder();
             } else if (!incommand && ((c == '{') || (c == '}'))) {
-                System.out.print("Swallowing braces");
                 // Swallow the brace.
             } else if (Character.isLetter(c) || StringUtil.SPECIAL_COMMAND_CHARS.contains(String.valueOf(c))) {
                 escaped = false;
