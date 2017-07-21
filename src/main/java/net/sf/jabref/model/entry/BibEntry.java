@@ -448,8 +448,8 @@ public class BibEntry implements Cloneable {
 
         // Checagem para ver se o campo é bibtexkey e se a chave tem, pelo menos tamanho 2 e começa com uma letra
         // Caso um dos dois últimos casos sejam falsos, atribui uma chave automaticamente
-        
-        if (fieldName.equals("bibtexkey")) {
+
+        if ("bibtexkey".equals(fieldName)) {
             char bibtexTheKey [] = value.toCharArray();
             if(value.length() <2 || Character.isDigit(bibtexTheKey[0])){
                 String characterMap1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -470,6 +470,31 @@ public class BibEntry implements Cloneable {
 
                 String finishedRandomKey = randomKey.toString();
                 return setField("bibtexkey", finishedRandomKey);
+            }
+        }
+
+        if ("author".equals(fieldName)){
+            char valueChars [] = value.toCharArray();
+            try{
+                for (int i = 0; i < value.length(); i++){
+                    if(!Character.isLetter(valueChars[i])) {
+                        throw new ParseException("", 0);
+                    }
+                }
+            }
+            catch (ParseException n){
+                throw new IllegalArgumentException("Invalid Author Name");
+            }
+        }
+
+        if ("journal".equals(fieldName)){
+            try{
+                if (value.matches("^[0-9]+")){
+                    throw new ParseException("", 0);
+                }
+            }
+            catch (ParseException n){
+                throw new IllegalArgumentException("Invalid Journal Name");
             }
         }
 
