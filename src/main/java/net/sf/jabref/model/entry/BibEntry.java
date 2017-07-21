@@ -448,8 +448,8 @@ public class BibEntry implements Cloneable {
 
         // Checagem para ver se o campo é bibtexkey e se a chave tem, pelo menos tamanho 2 e começa com uma letra
         // Caso um dos dois últimos casos sejam falsos, atribui uma chave automaticamente
-        
-        if (fieldName.equals("bibtexkey")) {
+
+        if ("bibtexkey".equals(fieldName)) {
             char bibtexTheKey [] = value.toCharArray();
             if(value.length() <2 || Character.isDigit(bibtexTheKey[0])){
                 String characterMap1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -472,7 +472,7 @@ public class BibEntry implements Cloneable {
                 return setField("bibtexkey", finishedRandomKey);
             }
         }
-
+        
         if (value.isEmpty()) {
             return clearField(fieldName);
         }
