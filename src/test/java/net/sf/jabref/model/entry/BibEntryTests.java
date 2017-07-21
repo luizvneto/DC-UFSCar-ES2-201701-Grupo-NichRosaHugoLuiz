@@ -36,6 +36,275 @@ public class BibEntryTests {
 
     }
 
+
+    //Testes com ano
+    @Test
+    public void anoComLetra() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("year", "abc");
+        Optional<String> teste;
+        teste = Optional.of("abc");
+        Assert.assertNotEquals(e.getField("year"),teste);
+    }
+
+    @Test
+    public void anoZero() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("year", "0");
+        Optional<String> teste;
+        teste = Optional.of("0");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    @Test
+    public void anoStringVazia() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("year", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    //Testes com autor
+    @Test
+    public void autorComNumero() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("author", "123");
+        Optional<String> teste;
+        teste = Optional.of("123");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    @Test
+    public void autorStringVazia() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("author", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    //testes para titulo
+
+    @Test
+    public void tituloComNumero() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("title", "123");
+        Optional<String> teste;
+        teste = Optional.of("123");
+        Assert.assertNotEquals(e.getField("title"),teste);
+    }
+
+    @Test
+    public void tituloStringVazia() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("title", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("title"),teste);
+    }
+
+    //Teste para journal
+
+    @Test
+    public void journalComNumero() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("journal", "123");
+        Optional<String> teste;
+        teste = Optional.of("123");
+        Assert.assertNotEquals(e.getField("journal"),teste);
+    }
+
+    @Test
+    public void journalStringVazia() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("journal", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("journal"),teste);
+    }
+
+    //teste com BBTK
+
+
+    @Test
+    public void bibTexKeyComecandoComLetra() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("Bibtexkey", "111111");
+        Optional<String> teste;
+        teste = Optional.of("1");
+        Assert.assertNotEquals(e.getField("Bibtexkey"),teste);
+    }
+
+    @Test
+    public void bibTexKeyComUmaLetra() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("Bibtexkey", "a");
+        Optional<String> teste;
+        teste = Optional.of("a");
+        Assert.assertNotEquals(e.getField("Bibtexkey"),teste);
+    }
+
+    //testes com volume
+    @Test
+    public void VolumeComLetra() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("volume", "abc");
+        Optional<String> teste;
+        teste = Optional.of("abc");
+        Assert.assertNotEquals(e.getField("volume"),teste);
+    }
+
+    @Test
+    public void VolumeStringVazia() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("volume", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("journal"),teste);
+    }
+
+    //testes com publisher
+    @Test
+    public void PublisherNulo() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("publisher", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("publisher"),teste);
+    }
+
+    //teste com pages
+
+
+    @Test
+    public void PagesNulo() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("pages", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("pages"),teste);
+    }
+
+    @Test
+    public void PagesLetra() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.ARTICLE.getName());
+        e.setField("pages", "abc");
+        Optional<String> teste;
+        teste = Optional.of("abc");
+        Assert.assertNotEquals(e.getField("journal"),teste);
+    }
+
+
+
+    //Testes com ano
+    @Test
+    public void anoComLetra2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("year", "abc");
+        Optional<String> teste;
+        teste = Optional.of("abc");
+        Assert.assertNotEquals(e.getField("year"),teste);
+    }
+
+
+    // ------------------- ------------------- ------------------
+    //---------    Testes com a parte do livro agora ------------
+
+    @Test
+    public void anoZero2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("year", "0");
+        Optional<String> teste;
+        teste = Optional.of("0");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    @Test
+    public void anoStringVazia2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("year", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    //Testes com autor
+    @Test
+    public void autorComNumero2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("author", "123");
+        Optional<String> teste;
+        teste = Optional.of("123");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    @Test
+    public void autorStringVazia2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("author", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("author"),teste);
+    }
+
+    //testes para titulo
+
+    @Test
+    public void tituloComNumero2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("title", "123");
+        Optional<String> teste;
+        teste = Optional.of("123");
+        Assert.assertNotEquals(e.getField("title"),teste);
+    }
+
+    @Test
+    public void tituloStringVazia2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("title", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("title"),teste);
+    }
+
+
+    //teste com BBTK
+
+
+    @Test
+    public void bibTexKeyComecandoComLetra2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("Bibtexkey", "111111");
+        Optional<String> teste;
+        teste = Optional.of("1");
+        Assert.assertNotEquals(e.getField("Bibtexkey"),teste);
+    }
+
+    @Test
+    public void bibTexKeyComUmaLetra2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("Bibtexkey", "a");
+        Optional<String> teste;
+        teste = Optional.of("a");
+        Assert.assertNotEquals(e.getField("Bibtexkey"),teste);
+    }
+
+    //testes com publisher
+    @Test
+    public void PublisherNulo2() {
+        BibEntry e = new BibEntry(BibtexEntryTypes.BOOK.getName());
+        e.setField("publisher", "");
+        Optional<String> teste;
+        teste = Optional.of("");
+        Assert.assertNotEquals(e.getField("publisher"),teste);
+    }
+
+
+
+
+
+
     @Test
     public void testDefaultConstructor() {
         BibEntry entry = new BibEntry();
